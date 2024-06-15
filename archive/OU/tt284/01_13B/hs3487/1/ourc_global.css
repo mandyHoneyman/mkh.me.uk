@@ -1,0 +1,254 @@
+/* This is a CSS comment*/
+
+/* Initial amendments to ensure validates to CSS 2.1 included:
+   - adding opening bracket { to navbar id
+   - correcting the color property of the footer id
+     from #0000 to #000000
+   - removal of unmatched closing tag at end of file
+*/
+
+/* The file has been reformatted and re-arranged to improve 
+   readability.
+   The diffrent types of selector have been grouped 
+   together. The order is
+   HTML elements
+   id
+   class
+   
+   Consistent formatting has been used for each selector.
+   - the opening brace appears on same line as selector
+   - the close brace aligns with the selector start
+   - properties are indented
+   - colons separating property and value within a 
+     selector align
+     
+*/
+
+/* Additional corrections:
+   - the width property of the page id was changed
+     from 6800px to 800px
+
+  Additional amendments:
+   - style added for table (table, th, tr, caption)
+   - added id for table_content  
+   - Replace "Century Gothic" fonts with Arial 
+  
+  Accessiblity recomendations
+  - for colour values use browser-safe palette
+  - use color instead of images for background colours
+  - have a logo image file with suitable alt text i.e.
+    separate from the background image
+    
+*/
+ 
+body {
+	padding          : 0;
+	text-align       : justify;
+	font-family      : Arial, Verdana, sans-serif;
+	font-size        : 13px;
+	color            : #666666;
+	
+	/* review background-color as not from browser-safe palette */
+ 	background-color : #25323A;
+}
+
+p {
+	text-align       : left;
+}
+
+a {
+  text-decoration  : none;
+  
+  /* review color as not from browser-safe palette */
+  color            : #252F33;
+}
+
+/* Added style for tables */
+table {
+	border-collapse  : collapse;
+  border           : 1px solid black;
+}
+
+/* Added style for table elements */
+th, td {
+	padding          : 5px;
+}
+
+/* Added style for caption */
+caption {
+	font-family      : Arial, Verdana, sans-serif;
+	font-weight      : bold;
+	font-size        : 15px;
+	margin           : 15px;
+}
+
+
+#header { 
+	position        : relative;
+	width           : 680px;
+	height          : 100px;
+	margin-left     : 29px;
+	margin-right    : 20px;
+	
+	/* Accessibility recommendation: replacing the background 
+	   with a colour and use an image for the logo with
+	   suitable alt text 
+	*/
+	background      : url(images/header.jpg) no-repeat;
+}
+
+#page {
+	margin          : 0; 
+	height          : 100%;  
+	position        : relative; 
+	/* Accessibility recommendation: do not use image for background
+	   Use colours from browser-safe palette */
+	background      : #25323A url(images/background.jpg) repeat-y;
+	width           : 800px;
+}
+
+/* Initial ammendment: addition of opening { */
+#navbar {
+	position        : relative;
+  width           : 680px;
+  height          : 55px;
+  margin-left     : 29px;
+  margin-right    : 20px;
+  
+  /* Accessibility recommendation: do not use image for background
+     Use colour instead */
+  background      : url(images/nav.jpg) no-repeat;
+}
+
+#page_content {
+  width           : 680px;
+  height          : 650px;
+}
+
+/* Initial amendment correct color from #0000 to #000000 
+
+   Changed font from 10px to 12px to improve readability
+*/
+
+#footer {
+	width           : 730px;
+	height          : 60px;
+	/* Accessibility recommendation: do not use image for backround.
+	   Use colour instead */
+	background      : url(images/footer.jpg) no-repeat;
+	text-align      : center;
+	font-size       : 12px;
+	color           : #000000;
+	padding-top     : 24px;
+}
+
+/* Added id for block to contain table content
+
+   Have used same colour as content class so that
+   site has same look and field however recommend that this
+   is reviewed as not from browser-safe palette 
+
+*/
+   
+#table_content {
+	width           : 550px;
+	padding-left    : 50px;
+	
+	/* Accessibility recommendation: use colurs from browser-safe palette */
+	color           : #111111;
+	position        : relative;
+}
+
+/* changed width from 680 to 450px to add white space to page */
+.content {
+	width           : 450px;
+	position        : relative;
+	padding-left    : 40px;
+	color           : #111111;
+	text-align      : left;
+	font-family     : Arial, Verdana, sans-serif;
+	line-height     : 20px;
+}
+
+.title {
+	position        : relative;
+  left            : 25px;
+  top             : 20px;
+  text-align      : left;
+  font-family     : Arial, Verdana, sans-serif;
+  font-size       : 32px;
+  font-weight     : bold;
+  color           : #000000;
+}
+
+.title2 {
+  text-align     : left;
+  padding-left   : 40px;
+  padding-top    : 10px;
+  padding-bottom : 10px;
+  /* review colour as not from browser safe-palette */
+  color          : #2C4969;
+  font-family    : Arial, Verdana, sans-serif;
+  font-size      : 24px;
+  font-weight    : bold;
+}
+
+/* Added font-family and increase font size from 11 to 15 */
+.sponsors {
+  width          : 124px;
+  font-family    : Arial, Verdana, sans-serif;
+  font-size      : 15px;
+  font-weight    : bold;
+  color          : black;
+  line-height    : 20px;
+  height         : auto;
+  margin-left    : 2px;
+  margin-right   : -2px;
+  background-repeat: no-repeat;
+  text-align     : left;
+  float          : right;
+}
+
+
+/* Removed style on a:hover as links were unreadable on hover 
+.sponsors a:hover {
+	color          : #C4E3E8;
+} 
+*/
+
+/* Change font-weight from bold to normal so that it
+   could be distinguished from the sponser header 
+*/
+ 
+.links {
+	font-size      : 13px;
+	font-weight    : normal;
+	font-family    : Arial, Verdana, sans-serif;
+	margin-top     : 27px;
+	margin-bottom  : 32px;
+	margin-right   : 5px;
+}
+
+/* Accessibility recommendation: Review color 
+   as not from browser-safe palette 
+*/
+.hmenu {
+  height         : 36px;
+  width          : 120px;
+  text-align     : center;
+  float          : left;
+  font-family    : Arial, Verdana, sans-serif;
+  font-size      : 14px;
+  font-weight    : bold;
+  color          : #252F33;
+  padding-top    : 19px;
+}
+
+/* Accessibility recommendation: Review
+   as contrast may not be different enough. Also
+   recommend colour instead of background for image
+*/
+ 
+.hmenu:hover {
+	background     : url(images/nav2.jpg) repeat-x;
+}

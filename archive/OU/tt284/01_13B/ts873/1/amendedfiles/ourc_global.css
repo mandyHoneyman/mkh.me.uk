@@ -1,0 +1,153 @@
+body {
+	padding: 0;
+	font-family: "Century Gothic", Verdana, sans-serif;
+	font-size: 0.8em; /* relative font sizes WCAG 1.4.4 */
+	color: #111111; /* default font colour amended to increase contrast WCAG 1.4.3 */
+	background-color:#25323A;
+	/* removed text justification WCAG 1.4.8 */
+}
+
+#page {
+	margin: 0;  
+	background: #ABE3F0 url(images/background.jpg) repeat-y; /* set background colour so text legible without bg image */
+	max-width: 730px; /* amended to prevent horizontal scroll */
+	
+}
+
+#header {
+	min-height: 100px; /*using min-height allows header to expand if font-size increased WCAG 1.4.8 */
+	margin: 0 21px 0 29px; /* combined margin code to reduce file size */
+	background: url(images/header.jpg) no-repeat top right;
+	background-color:#98CAD5; /*set colour incase images disabled */
+}
+
+/* navbar images replaced with CSS reduces file size */
+#navbar {
+	background-color:#c4e3e8;
+	margin: 0 21px 0 29px;
+	float:left;	
+	clear:both;
+	border-bottom:6px solid #98cad3;
+}
+
+/* navbar marked up as list to increase accessibility */
+#navbar ul {
+	display:inline;
+}
+
+#navbar ul li {
+	display:inline;
+	float:left;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	color:#252F33;
+	margin-bottom:-6px;
+}
+
+#navbar ul li a {
+	display:block;
+	padding:19px 17px 10px 17px;
+	border-bottom:6px solid #98cad3;
+	text-decoration:none; /* removed default underline for nav only */
+}
+
+#navbar ul li a:hover {
+	background-color:#98cad5;
+	border-bottom:6px solid #c3e5ee;
+}
+
+#page_content {
+	margin: 20px 20px 0 50px;
+	/* height removed to accomodate potential for increased font size */
+	clear:left;
+}
+
+
+.content {
+	max-width:500px;
+	float:left;
+	color:#111111;
+	line-height:1.5em; /*  WCAG 1.4.8 */
+}
+
+
+.sponsors {
+	float:left;
+	width: 124px;
+	font-weight:bold;
+	line-height:1.5em;
+	margin-left:10px;
+	/* removed unnecessary bg declaration */
+}
+
+.sponsors a:hover {
+	color:#2C769D; /* edited to increase contrast */
+}
+
+/* links class replaced with list */
+.sponsors ul,.sponsors li {
+
+	margin-left:0;
+	list-style-type:none;
+	padding-left:0;
+}
+
+
+#footer {
+	clear:both;
+	min-height:60px; /*using min-height allows header to expand if font-size increased */
+	background: url(images/footer.jpg) no-repeat bottom left;
+	font-size:smaller; /* use relative font size */
+	color:#000; /* corrected color code */
+}
+
+/* replaces hmenu */
+#footer ul {
+	text-align:center;
+	list-style-type:none;
+	padding-top:24px;
+	padding-bottom:20px;
+}
+
+#footer ul li {
+	display: inline;
+	padding: 0 5px;
+	border-right: 1px solid #000; /* could be removed on last item using CSS3 */
+}
+
+/* text styles */
+
+/* replaced .title and .title2 with h1 and h2 WCAG 1.3.1 */
+h1 {
+	position:relative;
+	left:25px;
+	top:20px;
+	font-size:2.5em;
+	font-weight:bold;
+	color:#000;
+	margin-right:120px; /* prevents title overlaping logo */
+}
+
+h2,caption {
+	color: #2C4969;
+	font-size:1.9em;
+	font-weight:bold;
+}
+
+
+a {
+	text-decoration:underline; /* normal links underlined for usibility */
+	color:#252F33;
+}
+
+a:visited {
+	color:#808080;
+}
+
+
+/* add hover to table rows for accessibility */
+
+tr:hover { 
+	background: #FCF; 
+}

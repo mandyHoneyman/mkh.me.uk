@@ -1,0 +1,68 @@
+body a,a:active,a:link,a:visited {
+color : #333;
+text-decoration: underline;
+}
+body p {
+	margin-top: 1em;
+	}
+	
+#midcol {
+	border-top: 1px #000 solid;
+	border-right:1px #000 solid;
+	border-left: 1px #000 solid;
+	padding: 0px 6px 6px 6px;
+	color: #333;
+	background-color: #ccffff;
+	text-align: left;
+}
+#rightcol {
+	border-top: 1px #000 solid;
+	border-right:1px #000 solid;
+	border-bottom:1px #000 solid;
+	border-left:12px #80FF80 solid;
+	left:80%;
+	margin-left:-18px;
+	width:120px;
+	position: absolute;
+	top: 160px;
+	text-align: center;
+	color: #333;
+	background-color: #33cc99;
+	padding: 0px 0px 10px 0px;
+}
+#rightcol * a {
+text-decoration : none;
+border-bottom : 1px dashed #ccffff;
+}
+div#footnote {
+	border-left: 1px #000 solid;
+	border-right: 1px #000 solid;
+	border-top: 1px #000 dashed;
+	border-bottom:1px #000 solid;
+	padding: 4px;
+	color: #333;
+	background-color: #ccccff;
+	text-align: center;
+	font-size: small;
+}
+.c6 {margin-left: 1em; }
+.c5 {margin-left: 6em; margin-right: 8em; text-align:center;  font-size : small;}
+.c4 {margin-left: 1em;}
+.c3 {margin-left: 3em;}
+.c2 {font-size:medium; }
+#list {list-style: square; margin-left: 2em;}
+.c1 {font-weight: bold; text-align: center; font-family: georgia, times roman, serif;font-size: larger}
+
+#midcol * a {
+text-decoration : none;
+border-bottom : 1px dashed #33cc99;
+}
+#midcol * a:hover {
+text-decoration : underline;
+border-bottom: none;
+color : #333;
+}
+#midcol * a:active,a:link,a:visited {
+text-decoration :none;
+color : #333;
+}

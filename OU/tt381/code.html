@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<TITLE>Code Listing Page</TITLE>
+<style type="text/css">
+<!-- 
+p {
+background-color: #ffff99;
+} 
+-->
+</style>
+</HEAD>
+<BODY>
+<H2>Code description</H2>
+
+<HR>
+FOR:
+<ul>
+<li>TT381 ECA</li>
+<li>Mandy Honeyman</li>
+<li>OUID: mh4468</li>
+<li>OUPI: M3160730</li>
+</ul>
+<HR>
+<H3>Page by Page</H3>
+<h4>All pages except index.php</h4>
+<pre>
+/*</pre><p>standard top for all action pages captures all the functions
+and ensures a session is available
+</p><pre>*/
+include("mh4468includes.php");
+</pre>
+<HR>
+<h4>index.php</h4>
+<p>None</p>
+<HR>
+<h4>copperrange.php and steelrange.php</h4>
+<pre>
+
+$coppersaucepanprice = getprice("pans","coppersaucepan"); 
+echo "Price: £".$coppersaucepanprice;
+
+</pre>
+<p>Uses <a href="#getprice">getprice</a> function (see <a href="#functions">below</a> for all functions) to get the price from the database. </p>
+<HR>
+<h4>cartaction.php</h4>
+<pre>
+/*</pre><p>
+The bulk of the page is built by looping through the cart
+displaying required data.
+Within the body of this page there are also calls to
+<a href="#addtocart">addtocart</a> and remove cart functions - reflected in initial output msg.
+And a check to ensure that there is (and are items in) a shopping cart,
+otherwise the empty shopping cart message is shown -
+with possibility of user executing checkout function removed.
+</p><pre>*/
+if (isset($_POST) && ($_POST[cartaction] == "add"))
+{
+  $item = $_POST[item];
+  addtocart($item);
+?&gt;
+  &lt;h3&gt;Added to your shopping basket: &lt;span style="color:red;"&gt;&lt;?php echo $item ?&gt;&lt;/span&gt; &lt;/h3&gt;
+  &lt;/HEAD&gt;
+  &lt;?php
+  }
+  elseif (isset($_POST) && ($_POST[cartaction] == "remove"))
+  {
+    $item = $_POST[item];
+    removefromcart($item);
+</pre>
+<p>Checks that the referring page has clicked add or remove and calls the addtocart or removefromcart function, passing to it the form value for item. It then echos the item into output.</p>
+<pre>
+if (!empty($_SESSION['cart']))
+{
+  foreach ($_SESSION['cart'] as $key=>$val)
+  {
+    echo "&lt;TD&gt;&lt;IMG SRC=\"images/".$key.".jpg\" ALT=\"".$key."picture\"&gt;&lt;/TD&gt;";
+    ?&gt;
+    &lt;TD&gt;
+    &lt;BR&gt;
+    
+    echo "Quantity of ".$key." required: ".$val."&lt;/TD&gt;";
+    
+&lt;snip&gt;
+  &lt;input type="hidden" name="item" value="&lt;?php echo $key; ?&gt;"&gt;
+
+</pre>
+<p>Checks that a cart session exists and then loops through it, inserting the key and values where necessary in order to build up the html.
+Line added into the form in order to easily pass the item to the next page.</p>
+<pre>
+if (array_sum($_SESSION['cart']) &lt;= 0)
+{
+  echo "Your Shopping Cart is empty &lt;br /&gt;";
+}
+else
+</pre>
+<p>If the user has been using the remove/add buttons it is possible that the cart might now be empty in which case (and if the cart is empty) we remove the option for checking out (html output contained within else statement).</p> 
+<HR>
+<h4>checkout.php</h4>
+
+<pre>
+if (array_sum($_SESSION['cart']) &lt;= 0)
+{
+  header("Location:cartaction.php");
+
+</pre>
+<p>If the user arrives at this page without a cart they are redirected back to the shopping cart page.</p>
+<p>This page also calls the <a href="#buildorder">buildorder</a> function which returns a grand total echoed into a hidden form field so that the exit page doesn't have to reaccess the database unnecessarily.</p>
+<p>Missing (but not a requirement): The addition of a message indicating that the card number needs to be filled out if submitted to exit.php without one.</p>
+<HR>
+<h4>exit.php</h4>
+<pre>
+if (empty($_POST[cardnumber]))
+{
+  header("Location:checkout.php");
+}
+else
+{
+  buildexit();
+  $total = $_POST[grandtotal];
+  $cardtype = $_POST[cardtype];
+}
+</pre>
+<p>Checks that a cardnumber has been supplied and if not returns user to the check out page.</p>
+<p>Otherwise it calls the <a href="#buildexit">buildexit</a> function and stores two of the passed form variables for inclusion in the html output.</p>
+<HR>
+<h4>transactions.php</h4>
+<p>Calls <a href="#buildtrans">buildtrans</a> function.</p>
+<HR>
+<h4><a name="functions">mh4468includes.php</a></h4>
+<pre>
+/*</pre><p>start the session and because it is included at the top of the includes file which is called at
+the top of each page, we know it's always there!
+</p><pre>*/
+session_start();
+/*</pre><p> //this header call stops back button from adding postdata, but doesn't do anything for refresh.</p><pre>*/
+header("Cache-control: private");
+
+</pre>
+<pre>
+/*</pre><p>
+functions: <a name="addtocart">addtocart</a> and removefromcart
+set up and use the session array into which we save shopping cart information for
+adding and removing items selected by the user.
+</p><pre>*/
+function addtocart($item)
+{
+if (empty($_SESSION['cart']))
+{
+  $_SESSION['cart'] = array();
+  $_SESSION['cart'][$item] = 1;
+}
+else
+{ 
+  $_SESSION['cart'][$item]++;
+}
+}
+function removefromcart($item)
+{
+  $_SESSION['cart'][$item]--;
+}
+<a name="getprice">function getprice</a>($tablename, $item) 
+{
+  $connection = @mysql_connect($host, $id, $pwd) or die(mysql_error());
+  global $dbname;
+  $thisdb = @mysql_select_db($dbname, $connection) or die(mysql_error());
+</pre>
+<p>The snippet of code above is repeated in all the functions that access the database. It would have been preferable to create two functions that 1) connect to the database and 2) select the table but I was unable to get them to work effectively.</p>
+<pre>
+/*</pre><p>   //set up query</p><pre>*/
+  $query = "SELECT price FROM ".$tablename." WHERE panname = '".$item."'";
+  $result = mysql_query($query, $connection) or die(mysql_error());
+  /*</pre><p>   //extract query from the resulting array</p><pre>*/
+  $row = mysql_fetch_array($result);
+  /*</pre><p>   //convert the result into a float</p><pre>*/
+  $intresult = $row['price'];
+  $result = $intresult / 100;
+  return $result;
+}
+</pre>
+<p>Create a query to retrieve the price of an item and convert it to a float. </p>
+<pre>
+/*</pre><p>*
+Function: add_record
+adds a row to a given database table.
+$tablename = the name of the table to which the row is added.
+$fields, $values are arrays. 
+NB fields removed from script, though still passed ,because of repeated 
+sql error and the fact they weren't actually required.
+*</p><pre>*/
+function add_record($tablename, $fields, $values)
+{
+&lt;snip&gt;
+  $query = "INSERT INTO $tablename VALUES(";
+  for ($i=0; $i&lt;count($values); $i++)
+  {
+    $query .= "'$values[$i]'";
+    if ( $i &lt; count($values)-1 )
+    {
+      $query .= ", ";
+    } 
+  }
+  $query .= ")";
+  $result = mysql_query($query, $connection) or die(mysql_error());
+  return $result;
+}
+</pre>
+<p>The above function was taken from course team supplied tables.php. No sense in re-inventing the wheel.</p>
+<pre>
+/*</pre><p>
+<a name="buildorder">function: buildorder</a>
+create table output for checkout page from session cart
+including working out postage & packing
+outputs totals
+and returns grand total for use elsewhere.
+</p><pre>*/
+function buildorder()
+{
+  global $stocktablename;
+  global $gtotal;
+  if (!empty($_SESSION['cart']))
+  {
+    foreach ($_SESSION['cart'] as $key=&gt;$val)
+    {
+      $qtotal = getprice($stocktablename,$key)*$val;
+      $total += $qtotal;
+      $qpandp += $val; 
+      echo "&lt;tr&gt;\n";
+      echo "&lt;TD&gt;".$key."&lt;/TD&gt;\n";
+      echo "&lt;TD&gt;".$val."&lt;/TD&gt;\n";
+      echo "&lt;td&gt;".$qtotal."&lt;/td&gt;";
+      echo "&lt;/tr&gt;\n";
+    }
+    $qpandptotal = (($qpandp-1) * 2.00) + 3.50;
+    $gtotal = $qpandptotal + $total;
+    echo "&lt;tr&gt;&lt;td colspan=\"2\"&gt;Postage &amp; Packing&lt;/td&gt;&lt;td&gt;".$qpandptotal."&lt;/td&gt;&lt;/tr&gt;";
+    echo "&lt;tr&gt;&lt;td colspan=\"2\"&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;".$gtotal."&lt;/td&gt;&lt;/tr&gt;";
+  }
+  return $gtotal;
+}
+</pre>
+<pre>
+/*</pre><p>
+<a name="buildexit">function: buildexit</a>
+Finally stores the order to the database and updates stock levels
+checks (again) for an existing cart
+</p><pre>*/
+function buildexit()
+{
+  &lt;snip&gt;
+    /*</pre><p>     //update the stock levels</p><pre>*/
+    foreach ($_SESSION['cart'] as $key=>$val)
+    {
+      /*</pre><p>       //set up query</p><pre>*/
+      $query = "UPDATE ".$stocktablename." SET stock=stock-".$val." WHERE panname = '".$key."'";
+      $result = mysql_query($query, $connection) or die(mysql_error());
+    }
+    /*</pre><p>     //now build the transaction record</p><pre>*/
+    $cardnumber = trim($_POST[cardnumber]);
+    /*</pre><p>     //get grandtotal back to an integer for storage</p><pre>*/
+    $grandtotal = ($_POST[grandtotal]*100);
+    $fields= array("cardnumber","transaction");
+    $values= array("$cardnumber","$grandtotal");
+    add_record($transactiontablename,$fields,$values);
+  }
+  /*</pre><p>   //clear up after ourselves clearing the cart and destroying the session.</p><pre>*/
+  unset($_SESSION['cart']);
+  session_destroy();
+  return;
+}
+</pre>
+<pre>
+/*</pre><p>
+<a name="buildtrans">function: buildtrans</a>
+Builds the table for the transaction page.
+Select all the records from the transaction table, save into an array and output them back to page.
+</p><pre>*/
+function buildtrans()
+{
+  &lt;snip&gt;
+  $query = "SELECT * FROM $transactiontablename";
+  $result = @mysql_query($query,$connection) or die(mysql_error());
+  while ($row = mysql_fetch_array($result))
+  {
+    $card = $row['cardnumber'];
+    /*</pre><p>     //convert to float</p><pre>*/
+    $total = $row['totalcost'] / 100;
+    
+    echo "&lt;tr&gt;\n";
+    echo "&lt;TD&gt;".$card."&lt;/TD&gt;\n";
+    echo "&lt;TD&gt;".$total."&lt;/TD&gt;\n";
+    echo "&lt;/tr&gt;\n";
+  }  
+  return;
+}
+</pre>
+<hr>
+<h4>References Used</h4>
+<ol>
+<li>Course manual</li>
+<li>PHP and MySQL Web Development, authors Luke Welling and Laura Thomson, published by SAMS</li>
+<li>SAMS Teach Yourself PHP in 24 hours, author: Matt Zandstra, published by SAMS</li>
+<li>PHP online documentation at uk2.php.net</li>
+</ol>
+<p>No code from these books copied (but not for want of trying).</p>
+<hr>
+</BODY>
+</HTML>

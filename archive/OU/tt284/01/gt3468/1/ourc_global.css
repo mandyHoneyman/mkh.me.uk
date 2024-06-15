@@ -1,0 +1,226 @@
+/*This is a CSS comment*/
+
+body 
+{
+	padding: 0;
+	text-align: justify;
+	font-family: Arial, Helvetica, sans-serif;    /* Replace font-family with Arial, Helvetica, sans-serif */
+	font-size: 14px;    /* Increase font-size to 14px; */
+	color: #666666;
+	background-color: #25323A;
+}
+
+p 
+{
+	text-align: left;
+}
+
+#header 
+{    /* Added opening curly brace */
+	position: relative;
+	width: 680px;
+	height: 100px;
+	margin-left: 29px;
+	margin-right: 20px;
+	background: #abe3f0 url(images/header.jpg);    /* Added background colour for contrast check only - to be removed */
+}
+
+#page
+{
+	margin: 0;
+	height: 100%;
+	position: relative;
+	background: #abe3f0 url(images/background.jpg) repeat-y;    /* Added background colour for contrast check only - to be removed */
+	width: 730px;    /* Increased width to 730px */
+}
+
+.content
+{
+	width: 510px;    /* Reduced width to 510px */
+	float: left;    /* Floated left */
+	position: relative;
+	padding-left: 60px;    /* Increased padding to 60px */
+	color: #111111;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;    /* Replaced font-family with Arial */
+	line-height: 21px;    /* Increase line-height */
+}
+
+#navbar
+{
+	position: relative;
+	width: 680px;
+	height: 55px;
+	margin-left: 29px;
+	margin-right: 20px;
+	background: #c4e3e8 url(images/nav.jpg) no-repeat;    /* Added background colour for contrast check only - to be removed */
+}
+
+/* Added CSS styling for the main ul navigation. Float:left to make the nav bar
+horizontal. Display: block to make whole area clickable. Minor padding, width adjustments.
+(combined with hmenu) */
+#navbar li
+{
+	float: left;
+}
+
+#navbar a
+{
+	display: block;
+	width: 100px;
+	text-decoration: none;
+	text-align: center;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #252F33;
+	padding-top: 20px;
+	padding-bottom: 19px;
+}
+
+#navbar a:hover
+{
+	background: #abe3f0 url(images/nav2.jpg) repeat-x;
+}
+
+#page_content
+{
+	width: 730px;    /* Width changed to 730px */
+	height: 650px;
+}
+
+.title    /* Moved text-align, font-family, font-weight to h1,h2,h3 */
+{
+	position: relative;
+	left: 30px;    /* Increased to 30px */
+	top: 20px;
+	color: #000000;    /* Corrected syntax error in color code */
+}
+
+/* .title 2 removed */
+
+/* Styling added for h1,h2,h3 headings */
+h1,h2,h3
+{
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+h1
+{
+	position: relative;
+	top: 15px;
+	font-size: 30px;
+	color: #000000;
+}
+
+
+h2
+{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #252f33;
+	font-size: 24px;
+}
+
+h3
+{
+	margin: 0;
+	color: #252f33;
+	padding: 27px 20px;
+	font-size: 16px;
+}
+
+.sponsors
+{
+	width: 123px;
+	font-size: 12px;    /* Increased font-size */
+	font-weight: bold;
+	line-height: 30px;    /* Increase line-height */
+	height: 650px;  /* Set px height to create right sidebar */
+	margin-left: 15px;    /* Increase left margin */
+	text-align: left;
+	float: left;
+	background: #98cad3;    /* Added background colour */
+}
+    /* Removed extra closing brace */
+
+.sponsors a
+{
+	display: block;    /* Added to increase clickable area */
+	padding-left: 20px;    /* Added padding to improve spacing */
+	color: blue;    /* Made hyperlings web-standard blue */
+}
+
+.sponsors a:hover
+{
+	background-color: #c4e3e8;    /* Added background colour */
+	padding-left: 20px;    /* Added padding to improve spacing */
+}
+
+.sponsors a:visited    /* Added visited selector */
+{
+	color: #000000;
+}
+
+ul    /* Added general style for all unordered lists */
+{
+	list-style-type: none;    /* Removed bullet points */
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+a
+{
+	text-decoration: underline;    /* Underlined hyperlinks */
+	color: #252F33;
+}
+
+#runtable    /* Added general styling for the table, table headers, table footer and caption */
+{
+	font-family: Arial, Helvetica, sans-serif;
+	background: #FFFFFF;
+	border: 1px solid #333333;
+	border-collapse: collapse;
+}
+
+th
+{
+	background: #abe3f0;	
+}
+
+tfoot
+{
+	background: #c4e3e8;	
+}
+
+caption
+{
+	margin-top: 25px;
+	background: #c4e3e8;
+	font-size: 16px;
+	padding: 6px 0px;
+	border: 1px solid #333333;
+	border-bottom: none;
+}
+
+#footer 
+{
+	width: 730px;
+	height: 36px;    /* Reduced footer height */
+	background: #abe3f0 url(images/footer.jpg) no-repeat;    /* Added background colour for contrast check only - to be removed */
+	text-align: center;
+	font-size: 14px;    /* Increased font-size to 14ox */
+	color: #000;
+	padding-top: 24px;
+}
+
+#footer li    /* Added footer list items styling */
+{
+	display: inline;
+	padding: 0 5px;
+	text-align: center;
+}
